@@ -346,6 +346,48 @@ document.addEventListener('click', (e) => {
 });
 
 /* ==========================================================
+   6b. APPLICANT DASHBOARD INTERACTION
+   ========================================================== */
+function switchDashboardTab(tabName) {
+  const btnRoadmap = document.getElementById('tab-btn-roadmap');
+  const btnCert = document.getElementById('tab-btn-cert');
+  const tabRoadmap = document.getElementById('dash-tab-roadmap');
+  const tabCert = document.getElementById('dash-tab-cert');
+
+  if (!btnRoadmap || !btnCert || !tabRoadmap || !tabCert) return;
+
+  if (tabName === 'roadmap') {
+    btnRoadmap.classList.add('active');
+    btnCert.classList.remove('active');
+    tabRoadmap.style.display = 'block';
+    tabCert.style.display = 'none';
+  } else {
+    btnCert.classList.add('active');
+    btnRoadmap.classList.remove('active');
+    tabCert.style.display = 'block';
+    tabRoadmap.style.display = 'none';
+  }
+}
+
+function toggleTaskDone(el) {
+  if (!el) return;
+  el.classList.toggle('done');
+  const badge = el.querySelector('.badge-pill');
+  if (badge) {
+    if (el.classList.contains('done')) {
+      badge.textContent = 'COMPLETED';
+      badge.style.background = 'rgba(16,185,129,0.15)';
+      badge.style.color = 'var(--accent-emerald)';
+    } else {
+      badge.textContent = 'IN PROGRESS';
+      badge.style.background = 'var(--primary-lime-subtle)';
+      badge.style.color = 'var(--primary-lime)';
+    }
+  }
+}
+
+
+/* ==========================================================
    7. FORM SUBMISSION HANDLERS
    ========================================================== */
 function handleApplySubmit(e) {

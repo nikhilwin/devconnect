@@ -66,6 +66,7 @@
           </div>
         </li>
         <li class="nav-item"><a href="#journey" class="nav-link"><i class="ri-route-line"></i> How It Works</a></li>
+        <li class="nav-item"><a href="#" onclick="openModal('dashboard-modal')" class="nav-link"><i class="ri-dashboard-line"></i> Applicant Dashboard</a></li>
         <li class="nav-item"><a href="#tools" class="nav-link"><i class="ri-tools-line"></i> Career Tools</a></li>
         <li class="nav-item"><a href="#verify" class="nav-link"><i class="ri-shield-check-line"></i> Verify Credential</a></li>
         <li class="nav-item"><a href="#faq" class="nav-link"><i class="ri-questionnaire-line"></i> FAQ</a></li>
@@ -85,7 +86,7 @@
         </button>
 
         <!-- Auth / Apply CTAs -->
-        <button class="btn btn-secondary" onclick="openModal('login-modal')">Sign In</button>
+        <button class="btn btn-secondary" onclick="openModal('dashboard-modal')">Dashboard</button>
         <button class="btn btn-primary" onclick="openModal('apply-modal')"><i class="ri-flashlight-line"></i> Apply Now</button>
 
         <!-- Mobile Menu Toggle Button -->
@@ -124,9 +125,9 @@
           <button class="btn btn-primary" onclick="openModal('apply-modal')">
             <i class="ri-sparkling-fill"></i> Apply For Internship
           </button>
-          <a href="#verify" class="btn btn-secondary">
-            <i class="ri-qr-code-line"></i> Verify Certificate
-          </a>
+          <button class="btn btn-secondary" onclick="openModal('dashboard-modal')">
+            <i class="ri-user-smile-line"></i> Applicant Dashboard
+          </button>
         </div>
 
         <div class="hero-perks">
@@ -777,6 +778,7 @@
           <ul class="footer-links">
             <li><a href="#journey">How It Works</a></li>
             <li><a href="#verify">Verify Certificate</a></li>
+            <li><a href="#" onclick="openModal('dashboard-modal')">Applicant Dashboard</a></li>
             <li><a href="#tools">ATS Resume Tool</a></li>
             <li><a href="#faq">FAQ & Support</a></li>
             <li><a href="#" onclick="openModal('admin-modal')">Admin Portal</a></li>
@@ -811,6 +813,114 @@
 
   <!-- 13. MODAL DIALOGS -->
 
+  <!-- Applicant Dashboard Modal -->
+  <div class="modal-overlay" id="dashboard-modal">
+    <div class="modal-container" style="max-width:840px;">
+      <button class="modal-close" onclick="closeModal('dashboard-modal')"><i class="ri-close-line"></i></button>
+
+      <div class="applicant-dashboard-profile">
+        <div class="applicant-avatar">RS</div>
+        <div style="flex:1;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h3 style="font-size:1.3rem; font-weight:800; margin-bottom:2px;" id="dash-applicant-name">Rohan Sharma</h3>
+              <p style="font-size:0.85rem; color:var(--text-secondary);" id="dash-applicant-email">rohan.sharma@example.com | ABC Institute of Technology</p>
+            </div>
+            <span class="badge-pill" style="font-size:0.75rem;"><i class="ri-checkbox-blank-circle-fill" style="font-size:0.5rem;"></i> ACTIVE INTERN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Tabs -->
+      <div style="display:flex; gap:12px; border-bottom:1px solid var(--border-subtle); margin-bottom:24px; padding-bottom:8px;">
+        <button class="filter-btn active" id="tab-btn-roadmap" onclick="switchDashboardTab('roadmap')"><i class="ri-task-line"></i> Project Roadmap & Tasks</button>
+        <button class="filter-btn" id="tab-btn-cert" onclick="switchDashboardTab('cert')"><i class="ri-award-line"></i> Certificate & Credentials</button>
+      </div>
+
+      <!-- Tab 1: Project Roadmap -->
+      <div id="dash-tab-roadmap">
+        <div style="background:var(--bg-secondary); padding:16px 20px; border-radius:var(--radius-md); border:1px solid var(--border-medium); margin-bottom:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong style="font-size:1rem;" id="dash-program-title">Java & Spring Boot Development Cohort</strong>
+            <span style="font-size:0.85rem; color:var(--primary-lime); font-weight:700;">75% Completed</span>
+          </div>
+          <div style="height:8px; background:rgba(255,255,255,0.1); border-radius:99px; overflow:hidden;">
+            <div style="width:75%; height:100%; background:var(--gradient-lime);"></div>
+          </div>
+        </div>
+
+        <h4 style="font-size:0.95rem; font-weight:700; margin-bottom:14px; color:var(--text-secondary);">Real-World Project Task Checklist:</h4>
+
+        <div class="task-checklist-item done" onclick="toggleTaskDone(this)">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div class="task-check-box"><i class="ri-check-line"></i></div>
+            <div>
+              <strong style="display:block; font-size:0.95rem;">Task 01: Development Environment & Git Repository Setup</strong>
+              <span style="font-size:0.8rem; color:var(--text-muted);">Set up Java 21, Spring Boot Initializr, and GitHub repository.</span>
+            </div>
+          </div>
+          <span class="badge-pill" style="font-size:0.7rem; background:rgba(16,185,129,0.15); color:var(--accent-emerald);">COMPLETED</span>
+        </div>
+
+        <div class="task-checklist-item done" onclick="toggleTaskDone(this)">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div class="task-check-box"><i class="ri-check-line"></i></div>
+            <div>
+              <strong style="display:block; font-size:0.95rem;">Task 02: Build RESTful APIs & Controller Endpoints</strong>
+              <span style="font-size:0.8rem; color:var(--text-muted);">Implement CRUD REST controllers with DTO validation.</span>
+            </div>
+          </div>
+          <span class="badge-pill" style="font-size:0.7rem; background:rgba(16,185,129,0.15); color:var(--accent-emerald);">COMPLETED</span>
+        </div>
+
+        <div class="task-checklist-item done" onclick="toggleTaskDone(this)">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div class="task-check-box"><i class="ri-check-line"></i></div>
+            <div>
+              <strong style="display:block; font-size:0.95rem;">Task 03: MySQL Database Integration & Spring Data JPA</strong>
+              <span style="font-size:0.8rem; color:var(--text-muted);">Configure entity mappings, repositories, and custom queries.</span>
+            </div>
+          </div>
+          <span class="badge-pill" style="font-size:0.7rem; background:rgba(16,185,129,0.15); color:var(--accent-emerald);">COMPLETED</span>
+        </div>
+
+        <div class="task-checklist-item" onclick="toggleTaskDone(this)">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div class="task-check-box"><i class="ri-check-line"></i></div>
+            <div>
+              <strong style="display:block; font-size:0.95rem;">Task 04: Final Project Submission & Video Demonstration</strong>
+              <span style="font-size:0.8rem; color:var(--text-muted);">Submit GitHub repo link & 2-minute project walkthrough video.</span>
+            </div>
+          </div>
+          <span class="badge-pill" style="font-size:0.7rem; background:var(--primary-lime-subtle); color:var(--primary-lime);">IN PROGRESS</span>
+        </div>
+      </div>
+
+      <!-- Tab 2: Certificate & Credentials -->
+      <div id="dash-tab-cert" style="display:none;">
+        <div style="background:var(--gradient-dark-card); border:1px solid var(--border-lime); border-radius:var(--radius-lg); padding:28px; margin-bottom:20px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+            <div>
+              <span class="badge-pill" style="font-size:0.75rem; margin-bottom:8px;"><i class="ri-award-fill"></i> ISO ACCREDITED CERTIFICATE</span>
+              <h3 style="font-size:1.4rem; font-weight:800; color:var(--text-primary);">Certificate of Internship Completion</h3>
+              <p style="font-size:0.85rem; color:var(--text-secondary);">Issued to Rohan Sharma | Credential ID: <strong class="text-lime">DC-2026-1001</strong></p>
+            </div>
+            <div style="text-align:right;">
+              <span style="display:block; font-size:0.8rem; color:var(--text-muted);">Grade / Honor</span>
+              <strong style="color:var(--primary-lime); font-size:1.1rem;">Grade A+ (Distinction)</strong>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:14px; margin-top:20px; flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="openCertificateModal()"><i class="ri-award-line"></i> View Printable Visual Certificate</button>
+            <button class="btn btn-secondary" onclick="showToast('📄 Offer Letter PDF downloaded successfully!')"><i class="ri-download-cloud-line"></i> Download Offer Letter</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Apply Modal -->
   <div class="modal-overlay" id="apply-modal">
     <div class="modal-container">
@@ -821,12 +931,12 @@
       <form id="apply-form" onsubmit="handleApplySubmit(event)">
         <div class="form-group">
           <label class="form-label">Full Name</label>
-          <input type="text" class="form-control" placeholder="Enter your full name" required>
+          <input type="text" class="form-control" id="apply-name-input" placeholder="Enter your full name" required>
         </div>
 
         <div class="form-group">
           <label class="form-label">Email Address</label>
-          <input type="email" class="form-control" placeholder="name@domain.com" required>
+          <input type="email" class="form-control" id="apply-email-input" placeholder="name@domain.com" required>
         </div>
 
         <div class="form-group">
@@ -843,7 +953,7 @@
 
         <div class="form-group">
           <label class="form-label">College / University Name</label>
-          <input type="text" class="form-control" placeholder="e.g. ABC Institute of Technology" required>
+          <input type="text" class="form-control" id="apply-college-input" placeholder="e.g. ABC Institute of Technology" required>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width:100%;">

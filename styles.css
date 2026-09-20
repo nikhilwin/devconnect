@@ -1158,7 +1158,67 @@ img {
   color: var(--text-primary);
 }
 
-/* 10. ADMIN DASHBOARD STYLING */
+/* 10. APPLICANT DASHBOARD STYLING */
+.applicant-dashboard-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.applicant-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--gradient-lime);
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.task-checklist-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+
+.task-checklist-item.done {
+  border-color: var(--border-lime);
+}
+
+.task-check-box {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 2px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: transparent;
+  transition: all var(--transition-fast);
+}
+
+.task-checklist-item.done .task-check-box {
+  background: var(--primary-lime);
+  border-color: var(--primary-lime);
+  color: var(--text-dark);
+}
+
+/* 11. ADMIN DASHBOARD STYLING */
 .admin-metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1187,25 +1247,7 @@ img {
   margin: 4px 0;
 }
 
-.admin-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.85rem;
-}
-
-.admin-table th, .admin-table td {
-  padding: 12px 14px;
-  text-align: left;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.admin-table th {
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-}
-
-/* 11. TESTIMONIALS SECTION */
+/* 12. TESTIMONIALS SECTION */
 .testimonials-section {
   padding: 100px 0;
   background: var(--bg-primary);
@@ -1271,7 +1313,7 @@ img {
   color: var(--text-muted);
 }
 
-/* 12. FAQ ACCORDION SECTION */
+/* 13. FAQ ACCORDION SECTION */
 .faq-section {
   padding: 100px 0;
   background: var(--bg-secondary);
@@ -1327,7 +1369,7 @@ img {
   padding: 0 28px 22px 28px;
 }
 
-/* 13. FOOTER SECTION */
+/* 14. FOOTER SECTION */
 .footer {
   background: var(--bg-primary);
   border-top: 1px solid var(--border-subtle);
@@ -1405,7 +1447,7 @@ img {
   box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
 }
 
-/* 14. MODAL DIALOGS */
+/* 15. MODAL DIALOGS */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -1505,7 +1547,7 @@ select.form-control {
   cursor: pointer;
 }
 
-/* 15. INTERACTIVE PRINTABLE CERTIFICATE TEMPLATE */
+/* 16. INTERACTIVE PRINTABLE CERTIFICATE TEMPLATE */
 .certificate-paper {
   background: #ffffff;
   color: #0b0f17;
@@ -1604,7 +1646,7 @@ select.form-control {
   margin-bottom: 4px;
 }
 
-/* 16. PROTECTION TOAST */
+/* 17. PROTECTION TOAST */
 #protect-toast {
   position: fixed;
   bottom: 28px;
