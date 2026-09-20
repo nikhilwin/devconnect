@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Devconnect virtual internship platform" />
+    <title>Devconnect — Build skills that move you forward</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      @media (max-width:780px) {
+        .auth-shell,.student-shell { display:block; }
+        .auth-aside { display:none; }
+        .auth-main { padding:47px 23px 26px; }
+        .student-sidebar { padding:19px; }
+        .student-profile { margin:18px 0; }
+        .student-nav { display:flex; overflow:auto; }
+        .student-nav button { white-space:nowrap; }
+        .student-side-footer { display:none; }
+        .student-main { padding:25px 17px; }
+        .student-top h2 { font-size:29px; }
+        .student-overview { grid-template-columns:1fr; }
+        .student-course { min-height:215px; }
+        .student-dialog { width:calc(100% - 18px); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="announcement"><span>New cohort applications are open</span><a href="#programs">Explore programs <span aria-hidden="true">→</span></a></div>
+    <header class="site-header" id="top">
+      <a href="#home" class="brand" aria-label="Devconnect home"><span class="brand-mark">D</span><span>devconnect</span></a>
+      <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav id="mainNav">
+        <a href="#programs">Programs</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#verify">Verify certificate</a>
+        <a href="#dashboard">Student dashboard</a>
+        <a class="nav-admin" href="#admin">Admin</a>
+      </nav>
+      <div class="header-actions"><button type="button" class="login-link" data-student-auth="login">Log in</button><button type="button" class="button button-small header-cta" data-student-auth="signup">Create account <span>↗</span></button></div>
+    </header>
+
+    <main>
+      <section class="hero section" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">REMOTE · PROJECT-BASED · CAREER-READY</p>
+          <h1>Real work.<br /><em>Meaningful</em> start.</h1>
+          <p class="hero-text">Choose a guided internship, complete portfolio-ready projects, and earn a certificate that anyone can verify online.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#programs">Explore internships <span>→</span></a>
+            <a class="text-link" href="#how-it-works">See how it works <span>↓</span></a>
+          </div>
+          <div class="hero-proof">
+            <div class="avatars" aria-label="Students"><span>AJ</span><span>RK</span><span>MS</span><span>+2K</span></div>
+            <p>Trusted by students building their first real portfolio.</p>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Internship dashboard preview">
+          <div class="orb orb-one"></div><div class="orb orb-two"></div>
+          <div class="progress-card floating-card">
+            <div class="card-top"><span class="mini-label">YOUR PROGRESS</span><span class="status-dot">On track</span></div>
+            <strong>Frontend Development</strong>
+            <div class="progress-track"><span></span></div>
+            <div class="progress-detail"><span>5 of 7 tasks</span><span>71%</span></div>
+          </div>
+          <div class="certificate-card floating-card">
+            <div class="certificate-seal">✓</div>
+            <p>Certificate<br />of completion</p>
+            <span>Verified &middot; SK-26-1842</span>
+          </div>
+          <div class="hero-shape shape-a"></div><div class="hero-shape shape-b"></div>
+          <p class="visual-caption">Your effort deserves a record.</p>
+        </div>
+      </section>
+
+      <section class="trust-strip section-wide" aria-label="Program benefits">
+        <div><b>100%</b><span>Remote programs</span></div>
+        <div><b>2–8 weeks</b><span>Flexible duration</span></div>
+        <div><b>Real projects</b><span>For your portfolio</span></div>
+        <div><b>Online ID</b><span>Certificate verification</span></div>
+      </section>
+
+      <section class="programs section" id="programs">
+        <div class="section-intro"><div><p class="eyebrow">FIND YOUR DIRECTION</p><h2>Programs built for your <em>next step.</em></h2></div><p>Learn by doing with structured projects, clear milestones, and support when you need it.</p></div>
+        <div class="filter-row" role="tablist" aria-label="Program categories"><button class="active" data-filter="all">All programs</button><button data-filter="technology">Technology</button><button data-filter="data">Data & AI</button><button data-filter="design">Design</button></div>
+        <div class="program-grid" id="programGrid"></div>
+        <div class="center"><a class="button button-outline" href="#programs" id="seePrograms">See all programs <span>↗</span></a></div>
+      </section>
+
+      <section class="steps section" id="how-it-works">
+        <div class="steps-visual"><span class="outline-number">01</span><div class="line-art line-art-one"></div><div class="line-art line-art-two"></div></div>
+        <div class="steps-content"><p class="eyebrow">A CLEAR PATH FORWARD</p><h2>Put your potential<br />into <em>practice.</em></h2><div class="steps-list">
+          <article><span>01</span><div><h3>Choose your program</h3><p>Find a domain that matches where you want to go.</p></div></article>
+          <article><span>02</span><div><h3>Build through projects</h3><p>Follow a practical roadmap and submit real work.</p></div></article>
+          <article><span>03</span><div><h3>Share your achievement</h3><p>Receive a unique, publicly verifiable certificate on completion.</p></div></article>
+        </div>
+      </section>
+
+      <section class="quote section-wide"><span class="quote-mark">“</span><blockquote>Devconnect gave me the structure to turn tutorials into actual work I was proud to show.</blockquote><div><span class="quote-avatar">P</span><p><b>Priya S.</b><br />Frontend program graduate</p></div></section>
+
+      <section class="verify section" id="verify">
+        <div class="verify-art"><div class="verify-ticket"><span class="mini-label">AUTHENTICITY CHECK</span><strong>Verified<br />achievement.</strong><span class="ticket-code">SK—2026—1842</span></div></div>
+        <div class="verify-copy"><p class="eyebrow">CERTIFICATE VERIFICATION</p><h2>Proof that<br />travels <em>with you.</em></h2><p>Every completion certificate has a unique ID. Employers and institutions can verify it in seconds.</p><form id="verifyForm" class="verify-form"><label for="certificateId" class="sr-only">Certificate ID</label><input id="certificateId" name="certificateId" placeholder="Enter certificate ID" autocomplete="off" /><button class="button button-primary" type="submit">Verify <span>→</span></button></form><p class="form-note">Try the demo ID: <button type="button" class="inline-button" id="demoVerify">SK-2026-1842</button></p><div class="verification-result" id="verificationResult" aria-live="polite"></div></div>
+      </section>
+
+      <section class="cta section"><div><p class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p><h2>Small steps. <em>Lasting</em> momentum.</h2></div><a class="button button-light" href="#programs">Start exploring <span>→</span></a></section>
+    </main>
+
+    <footer><a href="#home" class="brand"><span class="brand-mark">D</span><span>devconnect</span></a><div><a href="#programs">Programs</a><a href="#how-it-works">How it works</a><a href="#verify">Certificate verification</a><a href="#dashboard">Student dashboard</a><a href="#admin">Admin area</a></div><p>© <span id="year"></span> Devconnect. Built for learning that counts.</p></footer>
+
+    <dialog id="applyDialog" class="dialog"><button class="close-dialog" aria-label="Close">×</button><div id="applicationContent"></div></dialog>
+    <dialog id="studentDialog" class="dialog student-dialog"><button class="close-dialog" aria-label="Close">×</button><div id="studentContent"></div></dialog>
+    <dialog id="adminDialog" class="dialog admin-dialog"><button class="close-dialog" aria-label="Close">×</button><div id="adminContent"></div></dialog>
+    <template id="programTemplate"><article class="program-card"><div class="program-card-top"><span class="program-icon"></span><span class="program-duration"></span></div><p class="program-category"></p><h3></h3><p class="program-description"></p><div class="program-tags"></div><button class="card-link">View program <span>→</span></button></article></template>
+    <script src="app.js"></script>
+  </body>
+</html>
