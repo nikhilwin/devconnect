@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevConnect — Virtual Internships in Java, Python, Full Stack & AI</title>
+  <meta name="description" content="DevConnect provides ISO & MSME accredited virtual internships in Full Stack, Java, Python, AI/ML, and Web Development with live real-world projects and verified certificates.">
+  <meta name="keywords" content="virtual internship, java spring boot, full stack development, python data science, devconnect, offer letter verification">
+  <link rel="icon" type="image/png" href="https://api.iconify.design/ri:graduation-cap-fill.svg?color=%23bfff00">
+
+  <!-- RemixIcon CDN for high quality icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 1. TOP ANNOUNCEMENT TICKER -->
+  <div class="announcement-bar">
+    <div class="announcement-content">
+      <div class="announcement-item">
+        <span class="announcement-tag">New Batch</span>
+        <span>October 2026 Virtual Internship Cohort Applications Open!</span>
+      </div>
+      <div class="announcement-item">
+        <span class="announcement-tag">Verified</span>
+        <span>Instant Certificate & Offer Letter Verification Portal Active.</span>
+      </div>
+      <div class="announcement-item">
+        <span class="announcement-tag">Perks</span>
+        <span>Stipend + ISO Certificate + Letter of Recommendation (LOR)</span>
+      </div>
+      <div class="announcement-item">
+        <span class="announcement-tag">New Batch</span>
+        <span>October 2026 Virtual Internship Cohort Applications Open!</span>
+      </div>
+      <div class="announcement-item">
+        <span class="announcement-tag">Verified</span>
+        <span>Instant Certificate & Offer Letter Verification Portal Active.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. HEADER & NAVIGATION -->
+  <header class="header">
+    <div class="container navbar">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo">
+        <div class="logo-icon">
+          <i class="ri-code-s-slash-line"></i>
+        </div>
+        <div class="logo-text">Dev<span>Connect</span></div>
+      </a>
+
+      <!-- Navigation Links -->
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="#home" class="nav-link active"><i class="ri-home-4-line"></i> Home</a></li>
+        <li class="nav-item">
+          <a href="#internships" class="nav-link"><i class="ri-briefcase-line"></i> Internships <i class="ri-arrow-down-s-line"></i></a>
+          <div class="dropdown-menu">
+            <a href="#internships" class="dropdown-item" onclick="filterDomain('web')"><i class="ri-global-line"></i> Full Stack & Web</a>
+            <a href="#internships" class="dropdown-item" onclick="filterDomain('java')"><i class="ri-cup-line"></i> Java & Spring Boot</a>
+            <a href="#internships" class="dropdown-item" onclick="filterDomain('python')"><i class="ri-terminal-window-line"></i> Python & Data Science</a>
+            <a href="#internships" class="dropdown-item" onclick="filterDomain('ai')"><i class="ri-brain-line"></i> AI & Machine Learning</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="#journey" class="nav-link"><i class="ri-route-line"></i> How It Works</a></li>
+        <li class="nav-item"><a href="#tools" class="nav-link"><i class="ri-tools-line"></i> Career Tools</a></li>
+        <li class="nav-item"><a href="#verify" class="nav-link"><i class="ri-shield-check-line"></i> Verify Credential</a></li>
+        <li class="nav-item"><a href="#faq" class="nav-link"><i class="ri-questionnaire-line"></i> FAQ</a></li>
+      </ul>
+
+      <!-- Nav Action Controls -->
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="icon-btn" id="theme-toggle-btn" title="Toggle Light/Dark Theme">
+          <i class="ri-moon-line" id="theme-icon"></i>
+        </button>
+
+        <!-- Notification Bell -->
+        <button class="icon-btn" id="notif-btn" title="Notifications">
+          <i class="ri-notification-3-line"></i>
+          <span class="notification-badge">2</span>
+        </button>
+
+        <!-- Auth / Apply CTAs -->
+        <button class="btn btn-secondary" onclick="openModal('login-modal')">Sign In</button>
+        <button class="btn btn-primary" onclick="openModal('apply-modal')"><i class="ri-flashlight-line"></i> Apply Now</button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobile-menu-btn"><i class="ri-menu-3-line"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. HERO SECTION -->
+  <section class="hero-section" id="home">
+    <div class="hero-glow-bg"></div>
+    <div class="container hero-grid">
+      
+      <!-- Hero Text Content -->
+      <div class="hero-content">
+        <div class="gov-accreditation">
+          <div class="gov-badge-icon">
+            <i class="ri-verified-badge-line"></i>
+          </div>
+          <div class="gov-text">
+            <span>ISO 9001:2015 & Govt MSME Accredited</span>
+            <strong>#1 Platform for Virtual Internships & Dev Careers</strong>
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          Where Learning Meets <br>
+          <span class="heading-gradient">Real World Projects</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Kickstart your software engineering career with hands-on virtual internships in Full Stack, Java, Python, Web Development, Data Science, and AI. Work on industry-grade projects, get mentored, and earn verified credentials.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="openModal('apply-modal')">
+            <i class="ri-sparkling-fill"></i> Apply For Internship
+          </button>
+          <a href="#verify" class="btn btn-secondary">
+            <i class="ri-qr-code-line"></i> Verify Certificate
+          </a>
+        </div>
+
+        <div class="hero-perks">
+          <div class="perk-item"><i class="ri-checkbox-circle-fill"></i> Verified Certificate</div>
+          <div class="perk-item"><i class="ri-checkbox-circle-fill"></i> Offer Letter</div>
+          <div class="perk-item"><i class="ri-checkbox-circle-fill"></i> Flexible Hours</div>
+          <div class="perk-item"><i class="ri-checkbox-circle-fill"></i> Mentor Guidance</div>
+        </div>
+      </div>
+
+      <!-- Hero Visual / Live Code Sandbox Visual -->
+      <div class="hero-visual">
+        <div class="code-editor-card">
+          <div class="editor-header">
+            <div class="editor-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="editor-title">
+              <i class="ri-file-code-line"></i> devconnect_internship.js
+            </div>
+            <span class="editor-live-tag">● LIVE BATCH</span>
+          </div>
+
+          <div class="editor-body">
+            <div class="code-line"><span class="line-num">1</span> <span><span class="kw-const">const</span> intern = <span class="kw-new">new</span> <span class="func-name">DevConnectIntern</span>();</span></div>
+            <div class="code-line"><span class="line-num">2</span> <span></span></div>
+            <div class="code-line"><span class="line-num">3</span> <span><span class="kw-await">await</span> intern.<span class="func-name">selectDomain</span>(<span class="str-text">"Full Stack Web"</span>);</span></div>
+            <div class="code-line"><span class="line-num">4</span> <span><span class="kw-await">await</span> intern.<span class="func-name">receiveOfferLetter</span>();</span></div>
+            <div class="code-line"><span class="line-num">5</span> <span><span class="kw-await">await</span> intern.<span class="func-name">buildRealWorldProjects</span>();</span></div>
+            <div class="code-line"><span class="line-num">6</span> <span></span></div>
+            <div class="code-line"><span class="line-num">7</span> <span><span class="kw-const">const</span> certificate = <span class="kw-await">await</span> intern.<span class="func-name">getVerifiedCertificate</span>();</span></div>
+            <div class="code-line"><span class="line-num">8</span> <span>console.<span class="func-name">log</span>(certificate.<span class="func-name">status</span>); <span class="text-lime">// "VERIFIED & ACCREDITED"</span></span></div>
+          </div>
+
+          <!-- Timeline Stepper Preview Inside Visual -->
+          <div class="editor-timeline-preview">
+            <div class="preview-status-header">
+              <span>Current Status</span>
+              <span class="status-step-pill"><i class="ri-refresh-line"></i> Cohort Active</span>
+            </div>
+            <div class="progress-bar-wrap" style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden;">
+              <div style="width: 75%; height: 100%; background: var(--gradient-lime);"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Verified Badge -->
+        <div class="floating-verified-badge">
+          <div class="verified-icon"><i class="ri-check-double-line"></i></div>
+          <div>
+            <strong style="display:block; font-size:0.9rem;">100% Verified</strong>
+            <span style="font-size:0.78rem; color:var(--text-secondary);">ISO Certified Platform</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOMAIN TICKER MARQUEE -->
+  <div class="domain-marquee">
+    <div class="domain-marquee-content">
+      <div class="domain-pill"><i class="ri-cup-line"></i> Java & Spring Boot <span>●</span></div>
+      <div class="domain-pill"><i class="ri-global-line"></i> Full Stack Web Dev <span>●</span></div>
+      <div class="domain-pill"><i class="ri-terminal-window-line"></i> Python & Data Science <span>●</span></div>
+      <div class="domain-pill"><i class="ri-brain-line"></i> AI & Machine Learning <span>●</span></div>
+      <div class="domain-pill"><i class="ri-smartphone-line"></i> Android App Dev <span>●</span></div>
+      <div class="domain-pill"><i class="ri-layout-4-line"></i> UI/UX & Frontend <span>●</span></div>
+      <div class="domain-pill"><i class="ri-cup-line"></i> Java & Spring Boot <span>●</span></div>
+      <div class="domain-pill"><i class="ri-global-line"></i> Full Stack Web Dev <span>●</span></div>
+      <div class="domain-pill"><i class="ri-terminal-window-line"></i> Python & Data Science <span>●</span></div>
+    </div>
+  </div>
+
+  <!-- 4. STATS SECTION -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">15,000+</div>
+          <div class="stat-label">Interns Enrolled</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">25+</div>
+          <div class="stat-label">Internship Tracks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Completion Rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4.9/5</div>
+          <div class="stat-label">Student Satisfaction Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. STEPPER JOURNEY SECTION -->
+  <section class="stepper-section" id="journey">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">HOW IT WORKS</span>
+        <h2 class="section-title">Your 8-Step Internship Journey</h2>
+        <p class="section-subtitle">From application to certified software developer, step by step.</p>
+      </div>
+
+      <div class="stepper-grid">
+        <div class="stepper-card">
+          <div class="stepper-num">01</div>
+          <h3 class="stepper-card-title">Select & Apply</h3>
+          <p class="stepper-card-desc">Choose your preferred domain (Java, Python, Web, AI) and complete the quick enrollment form.</p>
+        </div>
+        <div class="stepper-card">
+          <div class="stepper-num">02</div>
+          <h3 class="stepper-card-title">Instant Offer Letter</h3>
+          <p class="stepper-card-desc">Receive your official ISO-verified Offer Letter directly in your dashboard & email.</p>
+        </div>
+        <div class="stepper-card">
+          <div class="stepper-num">03</div>
+          <h3 class="stepper-card-title">Task Access</h3>
+          <p class="stepper-card-desc">Unlock curated real-world project task statements and developer resources.</p>
+        </div>
+        <div class="stepper-card">
+          <div class="stepper-num">04</div>
+          <h3 class="stepper-card-title">Build Projects</h3>
+          <p class="stepper-card-desc">Develop industry-grade applications following modern coding standards.</p>
+        </div>
+        <div class="stepper-card">
+          <div class="stepper-num">05</div>
+          <h3 class="stepper-card-title">Submit Code</h3>
+          <p class="stepper-card-desc">Submit your GitHub repository link and demo video before the batch deadline.</p>
+        </div>
+        <div class="stepper-card">
+          <div class="stepper-num">06</div>
+          <h3 class="stepper-card-title">Mentor Evaluation</h3>
+          <p class="stepper-card-desc">Our expert software engineers review your code for quality, architecture, and performance.</p>
+        </div>
+        <div class="stepper-card">
+          <div class="stepper-num">07</div>
+          <h3 class="stepper-card-title">Get Certified</h3>
+          <p class="stepper-card-desc">Earn your QR-verified Internship Completion Certificate & LOR (Letter of Recommendation).</p>
+        </div>
+        <div class="stepper-card">
+          <div class="stepper-num">08</div>
+          <h3 class="stepper-card-title">Career Support</h3>
+          <p class="stepper-card-desc">Get your resume reviewed, unlock ATS tools, and get featured to hiring partners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. INTERNSHIP DOMAINS SECTION -->
+  <section class="domains-section" id="internships">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">PROGRAMS</span>
+        <h2 class="section-title">Explore Virtual Internship Tracks</h2>
+        <p class="section-subtitle">Work on live production-level projects with 100% self-paced flexibility.</p>
+      </div>
+
+      <!-- Filter Buttons Bar -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterDomain('all')">All Programs</button>
+        <button class="filter-btn" onclick="filterDomain('web')">Full Stack & Web</button>
+        <button class="filter-btn" onclick="filterDomain('java')">Java & Spring Boot</button>
+        <button class="filter-btn" onclick="filterDomain('python')">Python & Data</button>
+        <button class="filter-btn" onclick="filterDomain('ai')">AI & ML</button>
+      </div>
+
+      <!-- Domains Grid -->
+      <div class="domains-grid" id="domains-container">
+        <!-- Java Track -->
+        <div class="domain-card" data-category="java">
+          <div>
+            <div class="domain-card-header">
+              <div class="domain-icon"><i class="ri-cup-line"></i></div>
+              <span class="domain-badge">POPULAR</span>
+            </div>
+            <h3 class="domain-title">Java & Spring Boot Development</h3>
+            <p class="domain-desc">Master Core Java, OOPs, Spring Boot, REST APIs, Microservices architecture, and MySQL integration.</p>
+            <div class="domain-tech-tags">
+              <span class="tech-tag">Java 21</span>
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">REST API</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+          </div>
+          <div>
+            <div class="domain-meta">
+              <div class="meta-item"><i class="ri-time-line"></i> 4 Weeks</div>
+              <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
+            </div>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'Java & Spring Boot Development')">Apply Now</button>
+          </div>
+        </div>
+
+        <!-- Full Stack Track -->
+        <div class="domain-card" data-category="web">
+          <div>
+            <div class="domain-card-header">
+              <div class="domain-icon"><i class="ri-global-line"></i></div>
+              <span class="domain-badge">FEATURED</span>
+            </div>
+            <h3 class="domain-title">Full Stack Web Development</h3>
+            <p class="domain-desc">Build modern end-to-end web apps using React, Node.js, Express, and MongoDB with Tailwind CSS.</p>
+            <div class="domain-tech-tags">
+              <span class="tech-tag">React.js</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Express</span>
+            </div>
+          </div>
+          <div>
+            <div class="domain-meta">
+              <div class="meta-item"><i class="ri-time-line"></i> 4 - 8 Weeks</div>
+              <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
+            </div>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'Full Stack Web Development')">Apply Now</button>
+          </div>
+        </div>
+
+        <!-- Python Track -->
+        <div class="domain-card" data-category="python">
+          <div>
+            <div class="domain-card-header">
+              <div class="domain-icon"><i class="ri-terminal-window-line"></i></div>
+              <span class="domain-badge">HIGH DEMAND</span>
+            </div>
+            <h3 class="domain-title">Python & Data Science</h3>
+            <p class="domain-desc">Analyze complex datasets, build machine learning models, and automate workflows with NumPy, Pandas & Scikit-Learn.</p>
+            <div class="domain-tech-tags">
+              <span class="tech-tag">Python 3</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">NumPy</span>
+              <span class="tech-tag">Scikit-Learn</span>
+            </div>
+          </div>
+          <div>
+            <div class="domain-meta">
+              <div class="meta-item"><i class="ri-time-line"></i> 4 Weeks</div>
+              <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
+            </div>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'Python & Data Science')">Apply Now</button>
+          </div>
+        </div>
+
+        <!-- AI Track -->
+        <div class="domain-card" data-category="ai">
+          <div>
+            <div class="domain-card-header">
+              <div class="domain-icon"><i class="ri-brain-line"></i></div>
+              <span class="domain-badge">NEW</span>
+            </div>
+            <h3 class="domain-title">AI & Machine Learning Engineering</h3>
+            <p class="domain-desc">Deploy LLM-powered applications, neural networks, and computer vision models using PyTorch and OpenAI API.</p>
+            <div class="domain-tech-tags">
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">OpenAI</span>
+              <span class="tech-tag">Deep Learning</span>
+              <span class="tech-tag">FastAPI</span>
+            </div>
+          </div>
+          <div>
+            <div class="domain-meta">
+              <div class="meta-item"><i class="ri-time-line"></i> 6 Weeks</div>
+              <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
+            </div>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'AI & Machine Learning Engineering')">Apply Now</button>
+          </div>
+        </div>
+
+        <!-- Frontend Web Track -->
+        <div class="domain-card" data-category="web">
+          <div>
+            <div class="domain-card-header">
+              <div class="domain-icon"><i class="ri-layout-4-line"></i></div>
+              <span class="domain-badge">BEGINNER FRIENDLY</span>
+            </div>
+            <h3 class="domain-title">Frontend React & Web Design</h3>
+            <p class="domain-desc">Create pixel-perfect responsive user interfaces with HTML5, CSS3, JavaScript ES6+, and React.</p>
+            <div class="domain-tech-tags">
+              <span class="tech-tag">HTML5/CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Tailwind</span>
+            </div>
+          </div>
+          <div>
+            <div class="domain-meta">
+              <div class="meta-item"><i class="ri-time-line"></i> 4 Weeks</div>
+              <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
+            </div>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'Frontend React & Web Design')">Apply Now</button>
+          </div>
+        </div>
+
+        <!-- Android App Track -->
+        <div class="domain-card" data-category="web">
+          <div>
+            <div class="domain-card-header">
+              <div class="domain-icon"><i class="ri-smartphone-line"></i></div>
+              <span class="domain-badge">MOBILE</span>
+            </div>
+            <h3 class="domain-title">Android App Development</h3>
+            <p class="domain-desc">Build sleek native mobile applications with Kotlin, Android Jetpack components, and Firebase backend.</p>
+            <div class="domain-tech-tags">
+              <span class="tech-tag">Kotlin</span>
+              <span class="tech-tag">Android SDK</span>
+              <span class="tech-tag">Jetpack</span>
+              <span class="tech-tag">Firebase</span>
+            </div>
+          </div>
+          <div>
+            <div class="domain-meta">
+              <div class="meta-item"><i class="ri-time-line"></i> 4 Weeks</div>
+              <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
+            </div>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'Android App Development')">Apply Now</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. WHY CHOOSE US / FEATURES SECTION -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">WHY DEVCONNECT</span>
+        <h2 class="section-title">Built for Ambitious Developers</h2>
+        <p class="section-subtitle">Everything you need to transform theoretical knowledge into industry readiness.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="ri-qr-code-line"></i></div>
+          <h3 class="feature-title">Verified QR Credentials</h3>
+          <p class="feature-desc">Every certificate and offer letter includes a tamper-proof QR code and unique Credential ID verifiable worldwide on our live portal.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="ri-git-branch-line"></i></div>
+          <h3 class="feature-title">Real Production Code</h3>
+          <p class="feature-desc">Work on actual industry project briefs using GitHub workflows, PR code reviews, and modern CI/CD practices.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="ri-user-star-line"></i></div>
+          <h3 class="feature-title">1-on-1 Mentor Feedback</h3>
+          <p class="feature-desc">Receive detailed code reviews from experienced software engineers to improve code quality, performance, and security.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="ri-file-text-line"></i></div>
+          <h3 class="feature-title">Letter of Recommendation</h3>
+          <p class="feature-desc">Top-performing interns receive a performance-backed Letter of Recommendation (LOR) to boost higher studies and job applications.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="ri-time-line"></i></div>
+          <h3 class="feature-title">100% Flexible Hours</h3>
+          <p class="feature-desc">Manage your college classes alongside your internship. Submit tasks on your schedule with dedicated cohort support.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrapper"><i class="ri-briefcase-4-line"></i></div>
+          <h3 class="feature-title">Placement Assistance</h3>
+          <p class="feature-desc">Get access to ATS resume optimization, mock interviews, and direct referral opportunities with 100+ partner tech companies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CAREER TOOLS & ATS CHECKER + QUIZ SECTION -->
+  <section class="career-tools-section" id="tools">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">INTERESTING CAREER TOOLS</span>
+        <h2 class="section-title">Test Your Resume & Dev Skills</h2>
+        <p class="section-subtitle">Use our interactive developer tools to analyze ATS compatibility and test technical knowledge.</p>
+      </div>
+
+      <div class="career-tools-grid">
+        
+        <!-- Tool 1: ATS Resume Score Matcher -->
+        <div class="tool-card">
+          <div>
+            <span class="domain-badge" style="background:var(--primary-lime-subtle); color:var(--primary-lime);">ATS ANALYZER</span>
+            <h3 style="font-size:1.4rem; font-weight:700; margin:14px 0 8px 0;">Instant ATS Resume Matcher</h3>
+            <p style="font-size:0.9rem; color:var(--text-secondary);">Paste your resume summary or key technical skills to test ATS compatibility for software engineering roles.</p>
+            
+            <div class="form-group" style="margin-top:16px;">
+              <textarea class="form-control" id="ats-resume-input" rows="4" placeholder="Paste your resume tech skills e.g. Java, Spring Boot, REST APIs, Git, Microservices, SQL..."></textarea>
+            </div>
+          </div>
+
+          <div>
+            <button class="btn btn-primary" style="width:100%;" onclick="analyzeATSScore()">
+              <i class="ri-cpu-line"></i> Calculate ATS Score
+            </button>
+
+            <!-- Score Result Meter -->
+            <div class="ats-score-meter" id="ats-result-meter" style="display:none;">
+              <div class="score-circle" id="ats-score-num">88%</div>
+              <div>
+                <strong id="ats-score-title" style="display:block; font-size:1rem;">Great ATS Compatibility!</strong>
+                <span id="ats-score-desc" style="font-size:0.82rem; color:var(--text-muted);">Matches 8+ core requirements for Spring Boot & Web Dev roles.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tool 2: Quick Developer Skill Quiz Widget -->
+        <div class="tool-card">
+          <div>
+            <span class="domain-badge" style="background:rgba(99, 102, 241, 0.15); color:var(--accent-indigo);">DEV QUIZ</span>
+            <h3 style="font-size:1.4rem; font-weight:700; margin:14px 0 8px 0;">Quick Technical Skill Check</h3>
+            <p style="font-size:0.9rem; color:var(--text-secondary);">Test your Java & Web Dev fundamentals. Score 3/3 to unlock bonus resume templates!</p>
+            
+            <div id="quiz-container" style="margin-top:16px;">
+              <p style="font-weight:600; font-size:0.95rem; margin-bottom:12px;" id="quiz-question">Q: What annotation in Spring Boot marks a class as a REST Controller?</p>
+              <div class="quiz-option" onclick="checkQuizAnswer(this, false)">@Controller</div>
+              <div class="quiz-option" onclick="checkQuizAnswer(this, true)">@RestController</div>
+              <div class="quiz-option" onclick="checkQuizAnswer(this, false)">@Service</div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <div id="quiz-feedback" style="font-size:0.88rem; font-weight:600; color:var(--primary-lime); display:none; margin-bottom:10px;"></div>
+            <button class="btn btn-secondary" style="width:100%;" onclick="nextQuizQuestion()"><i class="ri-arrow-right-line"></i> Next Question</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. VERIFICATION PORTAL SECTION -->
+  <section class="verify-section" id="verify">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">VERIFICATION PORTAL</span>
+        <h2 class="section-title">Verify Certificate or Offer Letter</h2>
+        <p class="section-subtitle">Enter any Credential ID or Application ID below to verify authenticity in real-time.</p>
+      </div>
+
+      <div class="verify-card-wrapper">
+        <form class="verify-form" id="verify-form" onsubmit="handleVerification(event)">
+          <input type="text" class="verify-input" id="verify-id-input" placeholder="e.g. DC-2026-1001 or enter your certificate ID..." required>
+          <button type="submit" class="btn btn-primary"><i class="ri-search-eye-line"></i> Verify Now</button>
+        </form>
+
+        <!-- Verification Sample Quick Buttons -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <span style="font-size: 0.8rem; color: var(--text-muted); margin-right: 10px;">Try Sample IDs:</span>
+          <button class="tech-tag" style="cursor:pointer;" onclick="setAndVerify('DC-2026-1001')">DC-2026-1001</button>
+          <button class="tech-tag" style="cursor:pointer;" onclick="setAndVerify('DC-2026-1002')">DC-2026-1002</button>
+          <button class="tech-tag" style="cursor:pointer;" onclick="setAndVerify('DC-2026-1003')">DC-2026-1003</button>
+        </div>
+
+        <!-- Verification Result Box -->
+        <div class="verify-result-box" id="verify-result-box">
+          <div class="result-header">
+            <div class="verified-badge-label">
+              <i class="ri-shield-check-fill" style="font-size: 1.4rem;"></i>
+              <span>OFFICIALLY VERIFIED CREDENTIAL</span>
+            </div>
+            <span class="badge-pill" style="font-size: 0.75rem;">ISO 9001:2015 ACCREDITED</span>
+          </div>
+
+          <div class="result-details">
+            <div class="result-detail-item">
+              <span>Candidate Name</span>
+              <strong id="res-name">Rohan Sharma</strong>
+            </div>
+            <div class="result-detail-item">
+              <span>Internship Domain</span>
+              <strong id="res-domain">Java & Spring Boot Development</strong>
+            </div>
+            <div class="result-detail-item">
+              <span>Credential ID</span>
+              <strong id="res-id">DC-2026-1001</strong>
+            </div>
+            <div class="result-detail-item">
+              <span>Issue Date</span>
+              <strong id="res-date">September 15, 2026</strong>
+            </div>
+            <div class="result-detail-item">
+              <span>Status</span>
+              <strong id="res-status" class="text-lime">ACTIVE & VERIFIED</strong>
+            </div>
+            <div class="result-detail-item">
+              <span>Grade / Honor</span>
+              <strong id="res-grade">Grade A+ (Distinction)</strong>
+            </div>
+          </div>
+
+          <!-- Open Visual Certificate Modal Trigger -->
+          <div style="text-align:center; margin-top:20px; padding-top:16px; border-top:1px solid var(--border-subtle);">
+            <button class="btn btn-outline-lime" onclick="openCertificateModal()"><i class="ri-award-line"></i> View Printable Visual Certificate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. TESTIMONIALS SECTION -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">STUDENT STORIES</span>
+        <h2 class="section-title">Loved by 15,000+ Interns</h2>
+        <p class="section-subtitle">Hear how DevConnect helped students land full-time tech roles and internships.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          </div>
+          <p class="quote-text">"DevConnect's Java Spring Boot internship gave me actual REST API projects to build. The mentor code reviews were super thorough. I got my offer letter on day 1 and verified certificate after final code submission!"</p>
+          <div class="user-profile">
+            <div class="user-avatar">RS</div>
+            <div class="user-info">
+              <h4>Rahul Srivastava</h4>
+              <p>Full Stack Intern (Placed at Infosys)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          </div>
+          <p class="quote-text">"The Python & Data Science track was extremely structured. Working with Pandas and ML models boosted my resume immensely. The instant certificate verification portal made sharing on LinkedIn seamless!"</p>
+          <div class="user-profile">
+            <div class="user-avatar">AP</div>
+            <div class="user-info">
+              <h4>Ananya Patel</h4>
+              <p>Data Science Intern (IIT Kharagpur)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+          </div>
+          <p class="quote-text">"As a 3rd-year CS student, managing college with DevConnect was smooth because of self-paced tasks. Received my Letter of Recommendation (LOR) which helped me secure my dream off-campus offer."</p>
+          <div class="user-profile">
+            <div class="user-avatar">VK</div>
+            <div class="user-info">
+              <h4>Vikram Kumar</h4>
+              <p>Web Development Intern (VIT)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FAQ ACCORDION SECTION -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-pill">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Find quick answers to common queries about our virtual internships.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Are DevConnect virtual internships 100% online?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            Yes! All DevConnect virtual internship programs are 100% online and self-paced. You can work from anywhere in India or internationally according to your convenient timing.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>When do I receive my Offer Letter?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            Once your enrollment form is submitted, your ISO & MSME verified Offer Letter is generated instantly and available in your student portal as well as sent to your registered email address.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How are certificates verified by hiring companies?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            Every certificate contains a unique Credential ID and QR code. Employers can scan the QR code or enter the ID on our live Verification Portal (devconnect.in/verify) to verify candidate details instantly.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Is there mentor support if I get stuck on a coding task?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            Yes! You will get access to our active Developer Community on Discord/WhatsApp where mentors and community leads assist you with debugging, code structure, and git submission workflows.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Who is eligible to apply for DevConnect internships?</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+          <div class="faq-answer">
+            Students pursuing B.Tech, BE, BCA, MCA, B.Sc Computer Science, IT, Diploma, or recent graduates passionate about learning software development are eligible to apply.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="brand-logo">
+            <div class="logo-icon"><i class="ri-code-s-slash-line"></i></div>
+            <div class="logo-text">Dev<span>Connect</span></div>
+          </a>
+          <p>ISO 9001:2015 & Govt MSME Accredited virtual internship platform empowering the next generation of software engineers through real-world production projects.</p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Internship Domains</h4>
+          <ul class="footer-links">
+            <li><a href="#internships">Java & Spring Boot</a></li>
+            <li><a href="#internships">Full Stack Web Dev</a></li>
+            <li><a href="#internships">Python & Data Science</a></li>
+            <li><a href="#internships">AI & Machine Learning</a></li>
+            <li><a href="#internships">Android Development</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#journey">How It Works</a></li>
+            <li><a href="#verify">Verify Certificate</a></li>
+            <li><a href="#tools">ATS Resume Tool</a></li>
+            <li><a href="#faq">FAQ & Support</a></li>
+            <li><a href="#" onclick="openModal('admin-modal')">Admin Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Contact Us</h4>
+          <ul class="footer-links">
+            <li><i class="ri-mail-line"></i> support@devconnect.in</li>
+            <li><i class="ri-phone-line"></i> +91 98765 43210</li>
+            <li><i class="ri-map-pin-line"></i> Tech Hub, Cyber City, India</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 DevConnect Technologies. All rights reserved. ISO 9001:2015 Certified.</div>
+        <div style="display:flex; gap:20px;">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#" onclick="openModal('admin-modal')">Admin Portal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Support Button -->
+  <a href="https://wa.me/919876543210?text=Hi%20DevConnect,%20I%20have%20a%20query%20about%20virtual%20internships" target="_blank" class="whatsapp-float" title="Contact WhatsApp Support">
+    <i class="ri-whatsapp-line"></i>
+  </a>
+
+  <!-- 13. MODAL DIALOGS -->
+
+  <!-- Apply Modal -->
+  <div class="modal-overlay" id="apply-modal">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal('apply-modal')"><i class="ri-close-line"></i></button>
+      <h3 class="modal-title">Apply for Virtual Internship</h3>
+      <p class="modal-subtitle">Fill in your details to receive your instant Offer Letter & Task Portal Access.</p>
+
+      <form id="apply-form" onsubmit="handleApplySubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" placeholder="name@domain.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Select Internship Domain</label>
+          <select class="form-control" id="modal-domain-select" required>
+            <option value="Java & Spring Boot Development">Java & Spring Boot Development</option>
+            <option value="Full Stack Web Development">Full Stack Web Development</option>
+            <option value="Python & Data Science">Python & Data Science</option>
+            <option value="AI & Machine Learning Engineering">AI & Machine Learning Engineering</option>
+            <option value="Frontend React & Web Design">Frontend React & Web Design</option>
+            <option value="Android App Development">Android App Development</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">College / University Name</label>
+          <input type="text" class="form-control" placeholder="e.g. ABC Institute of Technology" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">
+          <i class="ri-send-plane-fill"></i> Submit Application & Get Offer Letter
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="login-modal">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal('login-modal')"><i class="ri-close-line"></i></button>
+      <h3 class="modal-title">Intern Dashboard Login</h3>
+      <p class="modal-subtitle">Access your assigned tasks, submit projects, and download credentials.</p>
+
+      <form id="login-form" onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Registered Email</label>
+          <input type="email" class="form-control" placeholder="intern@devconnect.in" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Application ID / Password</label>
+          <input type="password" class="form-control" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">
+          <i class="ri-login-box-line"></i> Sign In to Dashboard
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Modal Workspace -->
+  <div class="modal-overlay" id="admin-modal">
+    <div class="modal-container" style="max-width:800px;">
+      <button class="modal-close" onclick="closeModal('admin-modal')"><i class="ri-close-line"></i></button>
+      
+      <!-- Admin Login View -->
+      <div id="admin-login-view">
+        <h3 class="modal-title"><i class="ri-admin-line text-lime"></i> Admin Workspace Portal</h3>
+        <p class="modal-subtitle">Sign in to manage applicants, issue certificates, and publish internship tracks.</p>
+
+        <form onsubmit="handleAdminLogin(event)">
+          <div style="background:var(--bg-secondary); padding:12px 16px; border-radius:var(--radius-sm); border:1px solid var(--border-medium); margin-bottom:20px; font-size:0.85rem; color:var(--text-secondary);">
+            <strong>Demo Admin Credentials:</strong><br>
+            Email: <code style="color:var(--primary-lime);">admin@devconnect.test</code> &nbsp;|&nbsp; Password: <code style="color:var(--primary-lime);">demo2026</code>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Admin Email</label>
+            <input type="email" class="form-control" id="admin-email" value="admin@devconnect.test" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" id="admin-password" value="demo2026" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;">
+            <i class="ri-shield-user-line"></i> Sign In to Admin Workspace
+          </button>
+        </form>
+      </div>
+
+      <!-- Admin Dashboard View -->
+      <div id="admin-dashboard-view" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+          <div>
+            <h3 class="modal-title" style="margin:0;"><i class="ri-dashboard-3-line text-lime"></i> DevConnect Admin Pulse</h3>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Manage programs & verifiable records</span>
+          </div>
+          <button class="btn btn-secondary" style="padding:6px 16px; font-size:0.82rem;" onclick="adminLogout()">Sign Out</button>
+        </div>
+
+        <div class="admin-metrics-grid">
+          <div class="admin-metric-card">
+            <span>TOTAL APPLICANTS</span>
+            <strong id="adm-count-apps">142</strong>
+            <small style="color:var(--accent-emerald);">↑ 18% this month</small>
+          </div>
+          <div class="admin-metric-card">
+            <span>ACTIVE TRACKS</span>
+            <strong id="adm-count-tracks">6</strong>
+            <small style="color:var(--primary-lime);">Published on site</small>
+          </div>
+          <div class="admin-metric-card">
+            <span>CERTIFICATES ISSUED</span>
+            <strong id="adm-count-certs">1,248</strong>
+            <small style="color:var(--accent-indigo);">100% QR Verifiable</small>
+          </div>
+        </div>
+
+        <!-- Admin Form to Issue New Certificate Live! -->
+        <form onsubmit="handleIssueCertificate(event)" style="background:var(--bg-secondary); padding:20px; border-radius:var(--radius-md); border:1px solid var(--border-medium); margin-top:20px;">
+          <h4 style="font-size:1rem; font-weight:700; margin-bottom:12px; color:var(--primary-lime);"><i class="ri-add-circle-line"></i> Issue New Verifiable Certificate</h4>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+            <input type="text" class="form-control" id="issue-name" placeholder="Student Full Name" required>
+            <input type="text" class="form-control" id="issue-domain" placeholder="Domain (e.g. Full Stack Web)" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;"><i class="ri-verified-badge-line"></i> Issue Certificate & Activate Search ID</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Interactive Printable Certificate Modal -->
+  <div class="modal-overlay" id="cert-modal">
+    <div class="modal-container" style="max-width:850px; background:transparent; border:none; box-shadow:none;">
+      <button class="modal-close" onclick="closeModal('cert-modal')" style="background:var(--bg-card); border-radius:50%; width:36px; height:36px; z-index:10;"><i class="ri-close-line"></i></button>
+
+      <div class="certificate-paper">
+        <div class="cert-header">
+          <div class="cert-brand"><i class="ri-code-s-slash-line" style="color:#65a30d;"></i> Dev<span>Connect</span></div>
+          <div style="font-size:0.75rem; color:#64748b; font-weight:600;">ISO 9001:2015 ACCREDITED</div>
+        </div>
+
+        <div class="cert-title">Certificate of Internship Completion</div>
+        <p style="font-size:0.95rem; color:#475569;">This official certificate is proudly awarded to</p>
+
+        <div class="cert-name" id="cert-modal-name">Rohan Sharma</div>
+
+        <div class="cert-body-text">
+          for successfully completing the <strong>4-Week Virtual Internship Track</strong> in <br>
+          <strong id="cert-modal-domain" style="color:#0f172a; font-size:1.1rem;">Java & Spring Boot Development</strong> <br>
+          demonstrating outstanding performance, technical rigor, and software project excellence.
+        </div>
+
+        <div class="cert-footer">
+          <div style="text-align:left;">
+            <div style="font-size:0.8rem; color:#64748b;">Credential ID: <strong id="cert-modal-id" style="color:#0f172a;">DC-2026-1001</strong></div>
+            <div style="font-size:0.8rem; color:#64748b;">Issue Date: <strong id="cert-modal-date" style="color:#0f172a;">September 15, 2026</strong></div>
+          </div>
+
+          <div class="cert-seal">
+            <i class="ri-verified-badge-fill"></i>
+            <span>ISO 9001</span>
+            <span>VERIFIED</span>
+          </div>
+
+          <div class="cert-signature">
+            <div class="cert-signature-line">Nikhil Vishwakarma</div>
+            <div style="font-size:0.75rem; color:#64748b;">Director of Engineering, DevConnect</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:20px;">
+        <button class="btn btn-primary" onclick="window.print()"><i class="ri-printer-line"></i> Print / Save Certificate PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. PROTECTION TOAST -->
+  <div id="protect-toast">
+    <i class="ri-shield-user-line"></i>
+    <span id="toast-text">Content is protected. Copying disabled.</span>
+  </div>
+
+  <!-- JS Script -->
+  <script src="app.js"></script>
+</body>
+</html>
