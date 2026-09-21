@@ -1,10 +1,13 @@
 // DevConnect Platform JavaScript Application Logic
 
+let currentCandidate = JSON.parse(localStorage.getItem('devconnect-candidate') || 'null');
+
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initFAQ();
     initMobileMenu();
     initCopyProtection();
+    initCandidateSession();
 });
 
 /* ==========================================================
@@ -388,23 +391,254 @@ function toggleTaskDone(el) {
 
 
 /* ==========================================================
-   7. FORM SUBMISSION HANDLERS
+   7. CANDIDATE AUTHENTICATION & GOOGLE FORM LOGIC
    ========================================================== */
-function handleApplySubmit(e) {
-    e.preventDefault();
-    closeModal('apply-modal');
-    showToast('🎉 Application Submitted! Check your email for Offer Letter.');
-
-    const randomId = 'DC-2026-' + Math.floor(1000 + Math.random() * 9000);
-    setTimeout(() => {
-        setAndVerify(randomId);
-    }, 600);
+function initCandidateSession() {
+    updateCandidateUI();
 }
 
-function handleLoginSubmit(e) {
+function updateCandidateUI() {
+    const container = document.getElementById('nav-auth-container');
+    if (!container) return;
+
+    if (currentCandidate && currentCandidate.name) {
+        const nameParts = currentCandidate.name.trim().split(' ');
+        const firstName = nameParts[0] || 'Candidate';
+        const initials = nameParts.map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'DC';
+
+        container.innerHTML = `
+      <div class="user-badge-pill" onclick="openModal('dashboard-modal')" title="View Candidate Profile & Dashboard">
+        <div class="user-avatar-circle">${initials}</div>
+        <span>👋 Hi, ${escapeHtml(firstName)}</span>
+      </div>
+      <button class="btn btn-secondary" style="padding:6px 14px; font-size:0.82rem;" onclick="openModal('dashboard-modal')">Dashboard</button>
+      <button class="btn btn-outline-lime" style="padding:6px 12px; font-size:0.82rem;" onclick="handleCandidateLogout()" title="Sign Out"><i class="ri-logout-box-r-line"></i></button>
+    `;
+
+        // Update Applicant Dashboard modal elements with signed in candidate's details
+        const dashName = document.getElementById('dash-applicant-name');
+        const dashEmail = document.getElementById('dash-applicant-email');
+        const dashProgram = document.getElementById('dash-program-title');
+        const dashAvatar = document.querySelector('.applicant-avatar');
+
+        if (dashName) dashName.textContent = currentCandidate.name;
+        if (dashEmail) dashEmail.textContent = `${currentCandidate.email} | ${currentCandidate.college || 'DevConnect Academy'}`;
+        if (dashProgram && currentCandidate.domain) dashProgram.textContent = `${currentCandidate.domain} Cohort`;
+        if (dashAvatar) dashAvatar.textContent = initials;
+
+        // Update Printable Certificate Modal elements
+        const certName = document.getElementById('cert-modal-name');
+        const certDomain = document.getElementById('cert-modal-domain');
+        const certId = document.getElementById('cert-modal-id');
+
+        if (certName) certName.textContent = currentCandidate.name;
+        if (certDomain && currentCandidate.domain) certDomain.textContent = currentCandidate.domain;
+        if (certId && currentCandidate.id) certId.textContent = currentCandidate.id;
+
+        // Update active record in sampleDatabase for verification
+        if (currentCandidate.id) {
+            sampleDatabase[currentCandidate.id] = {
+                name: currentCandidate.name,
+                domain: currentCandidate.domain || 'Full Stack Web Development',
+                id: currentCandidate.id,
+                date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+                status: 'ACTIVE & VERIFIED',
+                grade: 'Grade A+ (ISO Accredited)'
+            };
+            currentVerifiedData = sampleDatabase[currentCandidate.id];
+        }
+    } else {
+        container.innerHTML = `
+      <button class="btn btn-secondary" onclick="openModal('auth-modal')"><i class="ri-user-line"></i> Sign In / Sign Up</button>
+      <button class="btn btn-primary" onclick="openGoogleForm()"><i class="ri-flashlight-line"></i> Apply Now</button>
+    `;
+    }
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function switchAuthTab(tab) {
+    const btnSignup = document.getElementById('tab-btn-signup');
+    const btnSignin = document.getElementById('tab-btn-signin');
+    const viewSignup = document.getElementById('auth-signup-view');
+    const viewSignin = document.getElementById('auth-signin-view');
+
+    if (tab === 'signup') {
+        btnSignup.classList.add('active');
+        btnSignin.classList.remove('active');
+        viewSignup.style.display = 'block';
+        viewSignin.style.display = 'none';
+    } else {
+        btnSignin.classList.add('active');
+        btnSignup.classList.remove('active');
+        viewSignin.style.display = 'block';
+        viewSignin.style.display = 'none';
+    }
+}
+
+function handleCandidateSignup(e) {
     e.preventDefault();
-    closeModal('login-modal');
-    showToast('Welcome to Intern Dashboard!');
+    const name = document.getElementById('signup-name-input').value.trim();
+    const email = document.getElementById('signup-email-input').value.trim();
+    const college = document.getElementById('signup-college-input').value.trim();
+
+    if (!name || !email) return;
+
+    const newId = 'DC-2026-' + Math.floor(1000 + Math.random() * 9000);
+    currentCandidate = {
+        name: name,
+        email: email,
+        college: college || 'Institute of Technology',
+        id: newId,
+        domain: 'Full Stack Web Development'
+    };
+
+    localStorage.setItem('devconnect-candidate', JSON.stringify(currentCandidate));
+    updateCandidateUI();
+    closeModal('auth-modal');
+    showToast(`🎉 Account Created! Welcome, ${name}.`);
+
+    setTimeout(() => {
+        openModal('dashboard-modal');
+    }, 400);
+}
+
+function handleCandidateLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email-input').value.trim();
+
+    let candidateName = 'Verified Candidate';
+    if (email) {
+        const parts = email.split('@')[0].split('.');
+        candidateName = parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(' ');
+    }
+
+    const existing = currentCandidate || {};
+    currentCandidate = {
+        name: existing.name || candidateName,
+        email: email,
+        college: existing.college || 'DevConnect Academy',
+        id: existing.id || ('DC-2026-' + Math.floor(1000 + Math.random() * 9000)),
+        domain: existing.domain || 'Full Stack Web Development'
+    };
+
+    localStorage.setItem('devconnect-candidate', JSON.stringify(currentCandidate));
+    updateCandidateUI();
+    closeModal('auth-modal');
+    showToast(`Welcome back, ${currentCandidate.name}!`);
+
+    setTimeout(() => {
+        openModal('dashboard-modal');
+    }, 400);
+}
+
+function handleCandidateLogout() {
+    localStorage.removeItem('devconnect-candidate');
+    currentCandidate = null;
+    updateCandidateUI();
+    showToast('Signed out of candidate account.');
+}
+
+function openGoogleForm(domainName = null) {
+    const select = document.getElementById('gform-domain-select');
+    const trackTitle = document.getElementById('gform-track-title');
+    const nameInput = document.getElementById('gform-name');
+    const emailInput = document.getElementById('gform-email');
+    const collegeInput = document.getElementById('gform-college');
+
+    if (domainName && select) {
+        select.value = domainName;
+        if (trackTitle) trackTitle.textContent = `Virtual Internship Form — ${domainName}`;
+    } else if (trackTitle) {
+        trackTitle.textContent = `Virtual Internship Credentials Application Form`;
+    }
+
+    if (currentCandidate) {
+        if (nameInput && currentCandidate.name) nameInput.value = currentCandidate.name;
+        if (emailInput && currentCandidate.email) emailInput.value = currentCandidate.email;
+        if (collegeInput && currentCandidate.college) collegeInput.value = currentCandidate.college;
+    }
+
+    resetGoogleFormView();
+    openModal('google-form-modal');
+}
+
+function handlePriorApplySubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('apply-name-input').value.trim();
+    const email = document.getElementById('apply-email-input').value.trim();
+    const domain = document.getElementById('modal-domain-select').value;
+    const college = document.getElementById('apply-college-input').value.trim();
+
+    closeModal('apply-modal');
+
+    if (!currentCandidate) {
+        currentCandidate = {
+            name: name,
+            email: email,
+            college: college,
+            domain: domain,
+            id: 'DC-2026-' + Math.floor(1000 + Math.random() * 9000)
+        };
+    } else {
+        currentCandidate.name = name;
+        currentCandidate.email = email;
+        currentCandidate.college = college;
+        currentCandidate.domain = domain;
+    }
+
+    localStorage.setItem('devconnect-candidate', JSON.stringify(currentCandidate));
+    updateCandidateUI();
+
+    setTimeout(() => {
+        openGoogleForm(domain);
+    }, 300);
+}
+
+function handleGoogleFormSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('gform-name').value.trim();
+    const email = document.getElementById('gform-email').value.trim();
+    const phone = document.getElementById('gform-phone').value.trim();
+    const college = document.getElementById('gform-college').value.trim();
+    const domain = document.getElementById('gform-domain-select').value;
+    const resume = document.getElementById('gform-resume').value.trim();
+    const github = document.getElementById('gform-github').value.trim();
+    const linkedin = document.getElementById('gform-linkedin').value.trim();
+    const sop = document.getElementById('gform-sop').value.trim();
+
+    const newId = (currentCandidate && currentCandidate.id) ? currentCandidate.id : ('DC-2026-' + Math.floor(1000 + Math.random() * 9000));
+
+    currentCandidate = {
+        name: name,
+        email: email,
+        phone: phone,
+        college: college,
+        domain: domain,
+        resume: resume,
+        github: github,
+        linkedin: linkedin,
+        sop: sop,
+        id: newId
+    };
+
+    localStorage.setItem('devconnect-candidate', JSON.stringify(currentCandidate));
+    updateCandidateUI();
+
+    document.getElementById('gform-main').style.display = 'none';
+    document.getElementById('gform-success-view').style.display = 'block';
+
+    showToast(`📋 Credentials Registered & Submitted for ${name}!`);
+}
+
+function resetGoogleFormView() {
+    const form = document.getElementById('gform-main');
+    const success = document.getElementById('gform-success-view');
+    if (form) form.style.display = 'block';
+    if (success) success.style.display = 'none';
 }
 
 /* ==========================================================
