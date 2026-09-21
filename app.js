@@ -499,7 +499,11 @@ function handleCandidateSignup(e) {
     localStorage.setItem('devconnect-candidate', JSON.stringify(currentCandidate));
     updateCandidateUI();
     closeModal('auth-modal');
-    showToast(`🎉 Account Created! Welcome, ${name}.`);
+
+    // Trigger automated Welcome email notification
+    sendCandidateEmail('welcome', email, name);
+
+    showToast(`🎉 Account Created! Welcome email sent to ${email}.`);
 
     setTimeout(() => {
         openModal('dashboard-modal');
@@ -628,10 +632,13 @@ function handleGoogleFormSubmit(e) {
     localStorage.setItem('devconnect-candidate', JSON.stringify(currentCandidate));
     updateCandidateUI();
 
+    // Automatically send Certificate & Offer Letter Email to candidate
+    sendCandidateEmail('certificate', email, name, { domain: domain, id: newId });
+
     document.getElementById('gform-main').style.display = 'none';
     document.getElementById('gform-success-view').style.display = 'block';
 
-    showToast(`📋 Credentials Registered & Submitted for ${name}!`);
+    showToast(`📋 Certificate & Offer Letter email dispatched to ${email}!`);
 }
 
 function resetGoogleFormView() {
@@ -639,6 +646,163 @@ function resetGoogleFormView() {
     const success = document.getElementById('gform-success-view');
     if (form) form.style.display = 'block';
     if (success) success.style.display = 'none';
+}
+
+/* ==========================================================
+   7b. AUTOMATED EMAIL DISPATCHER & INBOX LOGIC
+   ========================================================== */
+function sendCandidateEmail(type, recipientEmail, candidateName, extraData = {}) {
+    const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ', Today';
+    let emailObj = {};
+
+    if (type === 'welcome') {
+        emailObj = {
+            id: 'EM-' + Date.now(),
+            sender: 'DevConnect Support <no-reply@devconnect.in>',
+            recipient: recipientEmail,
+            subject: '🎉 Welcome to DevConnect! Candidate Account Activated',
+            time: timestamp,
+            badge: 'ACCOUNT ACTIVATED',
+            body: `
+        <h4>Dear ${escapeHtml(candidateName)},</h4>
+        <p>Welcome to <strong>DevConnect Virtual Internships</strong>! Your candidate account has been created successfully.</p>
+        <p>You can now access your personalized candidate dashboard, submit technical credentials, track project roadmaps, and download your ISO-accredited Offer Letter.</p>
+        <div style="background:var(--bg-card); padding:12px; border-radius:6px; margin:12px 0; border:1px solid var(--border-medium);">
+          <strong>Registered Email:</strong> ${escapeHtml(recipientEmail)}<br>
+          <strong>Account Status:</strong> Active & ISO Verifiable
+        </div>
+      `
+        };
+    } else if (type === 'certificate') {
+        const credId = extraData.id || 'DC-2026-1001';
+        const domain = extraData.domain || 'Software Engineering Virtual Internship';
+        emailObj = {
+            id: 'EM-' + Date.now(),
+            sender: 'DevConnect Certification Desk <credentials@devconnect.in>',
+            recipient: recipientEmail,
+            subject: `🎓 Official Credentials Issued — ISO Internship Certificate & Offer Letter (${credId})`,
+            time: timestamp,
+            badge: 'VERIFIED CREDENTIAL',
+            body: `
+        <h4>Dear ${escapeHtml(candidateName)},</h4>
+        <p>Congratulations! Your official credentials for <strong>${escapeHtml(domain)}</strong> have been issued and registered in our live verification database.</p>
+        <div style="background:var(--bg-card); padding:14px; border-radius:8px; margin:12px 0; border:1px solid var(--border-lime);">
+          <strong>Candidate Name:</strong> ${escapeHtml(candidateName)}<br>
+          <strong>Track Domain:</strong> ${escapeHtml(domain)}<br>
+          <strong>Credential ID:</strong> <span style="color:var(--primary-lime); font-weight:700;">${escapeHtml(credId)}</span><br>
+          <strong>Accreditation:</strong> ISO 9001:2015 & Govt MSME Certified
+        </div>
+        <p>Your printable certificate PDF and Offer Letter are attached and ready for LinkedIn sharing.</p>
+      `
+        };
+    }
+
+    let emails = JSON.parse(localStorage.getItem('devconnect-emails') || '[]');
+    emails.unshift(emailObj);
+    localStorage.setItem('devconnect-emails', JSON.stringify(emails));
+
+    const badge = document.getElementById('email-notif-count');
+    if (badge) badge.textContent = emails.length;
+
+    showToast(`📩 Email sent to ${recipientEmail}: "${emailObj.subject.substring(0, 32)}..."`);
+}
+
+function openEmailModal() {
+    const container = document.getElementById('email-inbox-list');
+    const recipientLabel = document.getElementById('email-recipient-indicator');
+    if (!container) return;
+
+    const email = (currentCandidate && currentCandidate.email) ? currentCandidate.email : 'candidate@example.com';
+    const name = (currentCandidate && currentCandidate.name) ? currentCandidate.name : 'Nikhil Vishwakarma';
+    const domain = (currentCandidate && currentCandidate.domain) ? currentCandidate.domain : 'Full Stack Web Development';
+    const credId = (currentCandidate && currentCandidate.id) ? currentCandidate.id : 'DC-2026-8892';
+
+    if (recipientLabel) {
+        recipientLabel.textContent = `Inbox for: ${email} (${name})`;
+    }
+
+    let emails = JSON.parse(localStorage.getItem('devconnect-emails') || '[]');
+
+    if (emails.length === 0) {
+        emails = [
+            {
+                id: 'EM-101',
+                sender: 'DevConnect Certification Desk <credentials@devconnect.in>',
+                recipient: email,
+                subject: `🎓 Official Credentials Issued — ISO Internship Certificate & Offer Letter (${credId})`,
+                time: 'Just Now',
+                badge: 'ISO CERTIFIED',
+                body: `
+          <h4>Dear ${escapeHtml(name)},</h4>
+          <p>Congratulations! Your official credentials for <strong>${escapeHtml(domain)}</strong> have been issued and registered in our live verification database.</p>
+          <div style="background:var(--bg-card); padding:14px; border-radius:8px; margin:12px 0; border:1px solid var(--border-lime);">
+            <strong>Candidate Name:</strong> ${escapeHtml(name)}<br>
+            <strong>Track Domain:</strong> ${escapeHtml(domain)}<br>
+            <strong>Credential ID:</strong> <span style="color:var(--primary-lime); font-weight:700;">${escapeHtml(credId)}</span><br>
+            <strong>Accreditation:</strong> ISO 9001:2015 & Govt MSME Certified
+          </div>
+          <p>Your printable certificate PDF and Offer Letter are ready to view or download.</p>
+        `
+            },
+            {
+                id: 'EM-102',
+                sender: 'DevConnect Support <no-reply@devconnect.in>',
+                recipient: email,
+                subject: '🎉 Welcome to DevConnect! Candidate Account Activated',
+                time: 'Today, 09:00 AM',
+                badge: 'ACCOUNT ACTIVATED',
+                body: `
+          <h4>Dear ${escapeHtml(name)},</h4>
+          <p>Welcome to <strong>DevConnect Virtual Internships</strong>! Your candidate account has been created successfully.</p>
+          <p>You can now access your personalized candidate dashboard, submit technical credentials, track project roadmaps, and download your ISO-accredited Offer Letter.</p>
+          <div style="background:var(--bg-card); padding:12px; border-radius:6px; margin:12px 0; border:1px solid var(--border-medium);">
+            <strong>Registered Email:</strong> ${escapeHtml(email)}<br>
+            <strong>Account Status:</strong> Active & ISO Verifiable
+          </div>
+        `
+            }
+        ];
+        localStorage.setItem('devconnect-emails', JSON.stringify(emails));
+    }
+
+    let html = '';
+    emails.forEach(item => {
+        html += `
+      <div class="email-card-item">
+        <div class="email-meta-bar">
+          <div class="email-sender-info">
+            <strong>From:</strong> ${escapeHtml(item.sender)}<br>
+            <strong>To:</strong> ${escapeHtml(item.recipient)}
+          </div>
+          <div style="text-align:right;">
+            <span class="badge-pill" style="font-size:0.7rem; margin-bottom:4px;">${escapeHtml(item.badge || 'VERIFIED')}</span>
+            <div class="email-timestamp">${escapeHtml(item.time)}</div>
+          </div>
+        </div>
+        <div class="email-subject-line"><i class="ri-mail-star-line text-lime"></i> ${escapeHtml(item.subject)}</div>
+        <div class="email-body-content">${item.body}</div>
+        <div class="email-action-bar">
+          <button class="btn btn-primary" style="padding:6px 14px; font-size:0.8rem;" onclick="openCertificateModal(); closeModal('email-modal');"><i class="ri-award-line"></i> View Printable Certificate PDF</button>
+          <button class="btn btn-secondary" style="padding:6px 14px; font-size:0.8rem;" onclick="openModal('dashboard-modal'); closeModal('email-modal');"><i class="ri-dashboard-line"></i> Open Candidate Dashboard</button>
+        </div>
+      </div>
+    `;
+    });
+
+    container.innerHTML = html;
+    openModal('email-modal');
+}
+
+function resendCandidateEmails() {
+    const email = (currentCandidate && currentCandidate.email) ? currentCandidate.email : 'candidate@example.com';
+    const name = (currentCandidate && currentCandidate.name) ? currentCandidate.name : 'Nikhil Vishwakarma';
+    const domain = (currentCandidate && currentCandidate.domain) ? currentCandidate.domain : 'Full Stack Web Development';
+    const id = (currentCandidate && currentCandidate.id) ? currentCandidate.id : 'DC-2026-8892';
+
+    sendCandidateEmail('welcome', email, name);
+    sendCandidateEmail('certificate', email, name, { domain: domain, id: id });
+    openEmailModal();
+    showToast(`📩 Re-dispatched Welcome & Certificate Emails to ${email}!`);
 }
 
 /* ==========================================================

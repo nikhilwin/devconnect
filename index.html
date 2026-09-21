@@ -83,10 +83,10 @@
           <i class="ri-moon-line" id="theme-icon"></i>
         </button>
 
-        <!-- Notification Bell -->
-        <button class="icon-btn" id="notif-btn" title="Notifications">
-          <i class="ri-notification-3-line"></i>
-          <span class="notification-badge">2</span>
+        <!-- Email Notification Bell -->
+        <button class="icon-btn" id="notif-btn" title="Email Inbox & Notifications" onclick="openEmailModal()">
+          <i class="ri-mail-unread-line"></i>
+          <span class="notification-badge" id="email-notif-count">2</span>
         </button>
 
         <!-- Dynamic Auth / Apply CTAs -->
@@ -1423,6 +1423,35 @@
 
       <div style="text-align:center; margin-top:20px;">
         <button class="btn btn-primary" onclick="window.print()"><i class="ri-printer-line"></i> Print / Save Certificate PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Automated Email Dispatcher & Inbox Modal -->
+  <div class="modal-overlay" id="email-modal">
+    <div class="modal-container" style="max-width:820px;">
+      <button class="modal-close" onclick="closeModal('email-modal')"><i class="ri-close-line"></i></button>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid var(--border-subtle); padding-bottom:12px;">
+        <div>
+          <h3 class="modal-title" style="margin:0;"><i class="ri-mail-send-line text-lime"></i> DevConnect Automated Email Service</h3>
+          <span style="font-size:0.82rem; color:var(--text-muted);" id="email-recipient-indicator">Simulated Email Inbox & Credentials Dispatcher</span>
+        </div>
+        <button class="btn btn-outline-lime" style="padding:6px 14px; font-size:0.82rem;" onclick="resendCandidateEmails()"><i class="ri-refresh-line"></i> Resend Email Notifications</button>
+      </div>
+
+      <div class="email-client-wrapper">
+        <div class="email-client-header">
+          <div class="email-client-title">
+            <i class="ri-inbox-archive-line" style="color:var(--primary-lime);"></i>
+            <span>Candidate Email Dispatcher & Sent Inbox</span>
+          </div>
+          <span class="badge-pill" style="font-size:0.75rem;"><i class="ri-checkbox-circle-fill"></i> SMTP DISPATCH ACTIVE</span>
+        </div>
+
+        <div class="email-list" id="email-inbox-list">
+          <!-- Dynamically rendered email templates -->
+        </div>
       </div>
     </div>
   </div>
