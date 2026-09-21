@@ -85,9 +85,11 @@
           <span class="notification-badge">2</span>
         </button>
 
-        <!-- Auth / Apply CTAs -->
-        <button class="btn btn-secondary" onclick="openModal('dashboard-modal')">Dashboard</button>
-        <button class="btn btn-primary" onclick="openModal('apply-modal')"><i class="ri-flashlight-line"></i> Apply Now</button>
+        <!-- Dynamic Auth / Apply CTAs -->
+        <div id="nav-auth-container" style="display:flex; align-items:center; gap:10px;">
+          <button class="btn btn-secondary" onclick="openModal('auth-modal')"><i class="ri-user-line"></i> Sign In / Sign Up</button>
+          <button class="btn btn-primary" onclick="openGoogleForm()"><i class="ri-flashlight-line"></i> Apply Now</button>
+        </div>
 
         <!-- Mobile Menu Toggle Button -->
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="ri-menu-3-line"></i></button>
@@ -322,7 +324,7 @@
               <div class="meta-item"><i class="ri-time-line"></i> 4 Weeks</div>
               <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
             </div>
-            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'Java & Spring Boot Development')">Apply Now</button>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openGoogleForm('Java & Spring Boot Development')">Apply Now</button>
           </div>
         </div>
 
@@ -347,7 +349,7 @@
               <div class="meta-item"><i class="ri-time-line"></i> 4 - 8 Weeks</div>
               <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
             </div>
-            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'Full Stack Web Development')">Apply Now</button>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openGoogleForm('Full Stack Web Development')">Apply Now</button>
           </div>
         </div>
 
@@ -372,7 +374,7 @@
               <div class="meta-item"><i class="ri-time-line"></i> 4 Weeks</div>
               <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
             </div>
-            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'Python & Data Science')">Apply Now</button>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openGoogleForm('Python & Data Science')">Apply Now</button>
           </div>
         </div>
 
@@ -397,7 +399,7 @@
               <div class="meta-item"><i class="ri-time-line"></i> 6 Weeks</div>
               <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
             </div>
-            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'AI & Machine Learning Engineering')">Apply Now</button>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openGoogleForm('AI & Machine Learning Engineering')">Apply Now</button>
           </div>
         </div>
 
@@ -422,7 +424,7 @@
               <div class="meta-item"><i class="ri-time-line"></i> 4 Weeks</div>
               <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
             </div>
-            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'Frontend React & Web Design')">Apply Now</button>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openGoogleForm('Frontend React & Web Design')">Apply Now</button>
           </div>
         </div>
 
@@ -447,7 +449,7 @@
               <div class="meta-item"><i class="ri-time-line"></i> 4 Weeks</div>
               <div class="meta-item"><i class="ri-award-line"></i> Certificate + LOR</div>
             </div>
-            <button class="btn btn-outline-lime" style="width:100%;" onclick="openModal('apply-modal', 'Android App Development')">Apply Now</button>
+            <button class="btn btn-outline-lime" style="width:100%;" onclick="openGoogleForm('Android App Development')">Apply Now</button>
           </div>
         </div>
 
@@ -788,8 +790,8 @@
         <div class="footer-column">
           <h4>Contact Us</h4>
           <ul class="footer-links">
-            <li><i class="ri-mail-line"></i> support@devconnect.in</li>
-            <li><i class="ri-phone-line"></i> +91 98765 43210</li>
+            <li><i class="ri-mail-line"></i> <a href="mailto:vish.nikhil01@gmail.com" style="color:inherit;">vish.nikhil01@gmail.com</a></li>
+            <li><i class="ri-phone-line"></i> <a href="tel:+918090441275" style="color:inherit;">+91 80904 41275</a></li>
             <li><i class="ri-map-pin-line"></i> Tech Hub, Cyber City, India</li>
           </ul>
         </div>
@@ -807,7 +809,7 @@
   </footer>
 
   <!-- Floating WhatsApp Support Button -->
-  <a href="https://wa.me/919876543210?text=Hi%20DevConnect,%20I%20have%20a%20query%20about%20virtual%20internships" target="_blank" class="whatsapp-float" title="Contact WhatsApp Support">
+  <a href="https://wa.me/918090441275?text=Hi%20DevConnect,%20I%20have%20a%20query%20about%20virtual%20internships" target="_blank" class="whatsapp-float" title="Contact WhatsApp Support (+91 80904 41275)">
     <i class="ri-whatsapp-line"></i>
   </a>
 
@@ -921,16 +923,83 @@
     </div>
   </div>
 
-  <!-- Apply Modal -->
+  <!-- Candidate Auth Modal (Sign Up & Sign In) -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeModal('auth-modal')"><i class="ri-close-line"></i></button>
+
+      <!-- Auth Tabs -->
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tab-btn-signup" onclick="switchAuthTab('signup')"><i class="ri-user-add-line"></i> Candidate Sign Up</button>
+        <button class="auth-tab-btn" id="tab-btn-signin" onclick="switchAuthTab('signin')"><i class="ri-login-box-line"></i> Sign In</button>
+      </div>
+
+      <!-- View 1: Sign Up -->
+      <div id="auth-signup-view">
+        <h3 class="modal-title">Create Candidate Account</h3>
+        <p class="modal-subtitle">Register to unlock your personalized dashboard, track tasks & issue credentials.</p>
+
+        <form id="signup-form" onsubmit="handleCandidateSignup(event)">
+          <div class="form-group">
+            <label class="form-label">Candidate Full Name <span style="color:var(--accent-rose);">*</span></label>
+            <input type="text" class="form-control" id="signup-name-input" placeholder="e.g. Nikhil Vishwakarma" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address <span style="color:var(--accent-rose);">*</span></label>
+            <input type="email" class="form-control" id="signup-email-input" placeholder="nikhil@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">College / University Name <span style="color:var(--accent-rose);">*</span></label>
+            <input type="text" class="form-control" id="signup-college-input" placeholder="e.g. National Institute of Technology" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Password <span style="color:var(--accent-rose);">*</span></label>
+            <input type="password" class="form-control" id="signup-password-input" placeholder="••••••••" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;">
+            <i class="ri-user-add-fill"></i> Sign Up & Open Dashboard
+          </button>
+        </form>
+      </div>
+
+      <!-- View 2: Sign In -->
+      <div id="auth-signin-view" style="display:none;">
+        <h3 class="modal-title">Candidate Login</h3>
+        <p class="modal-subtitle">Access your assigned tasks, submit projects, and view credentials.</p>
+
+        <form id="login-form" onsubmit="handleCandidateLogin(event)">
+          <div class="form-group">
+            <label class="form-label">Registered Email</label>
+            <input type="email" class="form-control" id="login-email-input" placeholder="candidate@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" id="login-password-input" placeholder="••••••••" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;">
+            <i class="ri-login-box-line"></i> Sign In to Dashboard
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Apply Modal (Prior Entry Form) -->
   <div class="modal-overlay" id="apply-modal">
     <div class="modal-container">
       <button class="modal-close" onclick="closeModal('apply-modal')"><i class="ri-close-line"></i></button>
       <h3 class="modal-title">Apply for Virtual Internship</h3>
-      <p class="modal-subtitle">Fill in your details to receive your instant Offer Letter & Task Portal Access.</p>
+      <p class="modal-subtitle">Select your target track to continue to the Official Google Credentials Form.</p>
 
-      <form id="apply-form" onsubmit="handleApplySubmit(event)">
+      <form id="apply-form" onsubmit="handlePriorApplySubmit(event)">
         <div class="form-group">
-          <label class="form-label">Full Name</label>
+          <label class="form-label">Candidate Full Name</label>
           <input type="text" class="form-control" id="apply-name-input" placeholder="Enter your full name" required>
         </div>
 
@@ -957,34 +1026,113 @@
         </div>
 
         <button type="submit" class="btn btn-primary" style="width:100%;">
-          <i class="ri-send-plane-fill"></i> Submit Application & Get Offer Letter
+          <i class="ri-google-fill"></i> Continue to Google Credentials Form →
         </button>
       </form>
     </div>
   </div>
 
-  <!-- Login Modal -->
-  <div class="modal-overlay" id="login-modal">
-    <div class="modal-container">
-      <button class="modal-close" onclick="closeModal('login-modal')"><i class="ri-close-line"></i></button>
-      <h3 class="modal-title">Intern Dashboard Login</h3>
-      <p class="modal-subtitle">Access your assigned tasks, submit projects, and download credentials.</p>
+  <!-- Interactive Google Form Application Modal -->
+  <div class="modal-overlay" id="google-form-modal">
+    <div class="modal-container" style="max-width:760px; padding:0; background:transparent; border:none; box-shadow:none;">
+      <button class="modal-close" onclick="closeModal('google-form-modal')" style="background:var(--bg-card); border-radius:50%; width:36px; height:36px; z-index:10; top:8px; right:8px;"><i class="ri-close-line"></i></button>
 
-      <form id="login-form" onsubmit="handleLoginSubmit(event)">
-        <div class="form-group">
-          <label class="form-label">Registered Email</label>
-          <input type="email" class="form-control" placeholder="intern@devconnect.in" required>
+      <div class="gform-wrapper">
+        <!-- Form View -->
+        <form id="gform-main" onsubmit="handleGoogleFormSubmit(event)">
+          <!-- Banner Card -->
+          <div class="gform-banner-card">
+            <div style="display:flex; align-items:center; gap:8px; font-size:0.8rem; color:#673ab7; font-weight:700; text-transform:uppercase; margin-bottom:4px;">
+              <i class="ri-google-fill"></i> DevConnect Official Google Form
+            </div>
+            <h2 class="gform-title" id="gform-track-title">Virtual Internship Credentials Application</h2>
+            <p class="gform-desc">Fill in your complete credentials and technical profile for this specific internship track. Your ISO Offer Letter & Dashboard will be updated automatically upon submission.</p>
+            <div class="gform-required-note">* Indicates required question</div>
+          </div>
+
+          <!-- Card 1: Candidate Basic Info -->
+          <div class="gform-card">
+            <div class="gform-question-title">Candidate Full Name <span class="req">*</span></div>
+            <input type="text" class="gform-input-text" id="gform-name" placeholder="Your full name" required>
+          </div>
+
+          <div class="gform-card">
+            <div class="gform-question-title">Official Email Address <span class="req">*</span></div>
+            <input type="email" class="gform-input-text" id="gform-email" placeholder="Your email address" required>
+          </div>
+
+          <div class="gform-card">
+            <div class="gform-question-title">WhatsApp / Phone Number <span class="req">*</span></div>
+            <input type="tel" class="gform-input-text" id="gform-phone" placeholder="e.g. +91 98765 43210" required>
+          </div>
+
+          <div class="gform-card">
+            <div class="gform-question-title">College / University Name <span class="req">*</span></div>
+            <input type="text" class="gform-input-text" id="gform-college" placeholder="Your institute name" required>
+          </div>
+
+          <!-- Card 2: Track & Technical Links -->
+          <div class="gform-card">
+            <div class="gform-question-title">Target Internship Domain <span class="req">*</span></div>
+            <select class="gform-select" id="gform-domain-select" required>
+              <option value="Java & Spring Boot Development">Java & Spring Boot Development</option>
+              <option value="Full Stack Web Development">Full Stack Web Development</option>
+              <option value="Python & Data Science">Python & Data Science</option>
+              <option value="AI & Machine Learning Engineering">AI & Machine Learning Engineering</option>
+              <option value="Frontend React & Web Design">Frontend React & Web Design</option>
+              <option value="Android App Development">Android App Development</option>
+            </select>
+          </div>
+
+          <div class="gform-card">
+            <div class="gform-question-title">Resume / Portfolio Link (Google Drive / GitHub / Website) <span class="req">*</span></div>
+            <input type="url" class="gform-input-text" id="gform-resume" placeholder="https://drive.google.com/file/... or website link" required>
+          </div>
+
+          <div class="gform-card">
+            <div class="gform-question-title">GitHub Profile Link</div>
+            <input type="url" class="gform-input-text" id="gform-github" placeholder="https://github.com/your-username">
+          </div>
+
+          <div class="gform-card">
+            <div class="gform-question-title">LinkedIn Profile Link</div>
+            <input type="url" class="gform-input-text" id="gform-linkedin" placeholder="https://linkedin.com/in/your-profile">
+          </div>
+
+          <!-- Card 3: Experience & Statement of Purpose -->
+          <div class="gform-card">
+            <div class="gform-question-title">Prior Coding Experience Level <span class="req">*</span></div>
+            <div class="gform-radio-group">
+              <label class="gform-radio-label"><input type="radio" name="gform-experience" value="Beginner (Learning Core Concepts)" checked> Beginner (Learning Core Concepts)</label>
+              <label class="gform-radio-label"><input type="radio" name="gform-experience" value="Intermediate (Built small projects)"> Intermediate (Built small projects)</label>
+              <label class="gform-radio-label"><input type="radio" name="gform-experience" value="Advanced (Comfortable with frameworks)"> Advanced (Comfortable with frameworks)</label>
+            </div>
+          </div>
+
+          <div class="gform-card">
+            <div class="gform-question-title">Statement of Purpose / Why do you want to join this internship? <span class="req">*</span></div>
+            <textarea class="gform-textarea" id="gform-sop" rows="3" placeholder="Briefly describe your interest and goals..." required></textarea>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="gform-actions">
+            <button type="submit" class="gform-submit-btn"><i class="ri-send-plane-fill"></i> Submit Application</button>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('gform-main').reset()" style="font-size:0.85rem; padding:8px 16px;">Clear form</button>
+          </div>
+        </form>
+
+        <!-- Success Confirmation View -->
+        <div id="gform-success-view" style="display:none;" class="gform-success-card">
+          <div style="color:#673ab7; font-size:3rem; margin-bottom:8px;"><i class="ri-checkbox-circle-fill"></i></div>
+          <h2 style="font-family:var(--font-heading); font-size:1.5rem; margin-bottom:8px;">DevConnect Virtual Internship Form</h2>
+          <p style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:24px;">Your response has been recorded. Your ISO-accredited Offer Letter is active!</p>
+          <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="openModal('dashboard-modal'); closeModal('google-form-modal');"><i class="ri-user-smile-line"></i> Go to Applicant Dashboard</button>
+            <button class="btn btn-secondary" onclick="resetGoogleFormView()"><i class="ri-refresh-line"></i> Submit another response</button>
+          </div>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label class="form-label">Application ID / Password</label>
-          <input type="password" class="form-control" placeholder="••••••••" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary" style="width:100%;">
-          <i class="ri-login-box-line"></i> Sign In to Dashboard
-        </button>
-      </form>
     </div>
   </div>
 
