@@ -74,6 +74,12 @@
         <li class="nav-item"><a href="#tools" class="nav-link"><i class="ri-tools-line"></i> Career Tools</a></li>
         <li class="nav-item"><a href="#verify" class="nav-link"><i class="ri-shield-check-line"></i> Verify Credential</a></li>
         <li class="nav-item"><a href="#faq" class="nav-link"><i class="ri-questionnaire-line"></i> FAQ</a></li>
+        <li class="nav-item mobile-only-auth">
+          <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; padding-top: 10px; border-top: 1px solid var(--border-subtle);">
+            <button class="btn btn-secondary" style="width:100%; justify-content:center;" onclick="openModal('auth-modal')"><i class="ri-user-line"></i> Sign In / Sign Up</button>
+            <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="openGoogleForm()"><i class="ri-flashlight-line"></i> Apply Now</button>
+          </div>
+        </li>
       </ul>
 
       <!-- Nav Action Controls -->
@@ -92,11 +98,11 @@
         <!-- Dynamic Auth / Apply CTAs -->
         <div id="nav-auth-container" style="display:flex; align-items:center; gap:10px;">
           <button class="btn btn-secondary" onclick="openModal('auth-modal')"><i class="ri-user-line"></i> Sign In / Sign Up</button>
-          <button class="btn btn-primary" onclick="openGoogleForm()"><i class="ri-flashlight-line"></i> Apply Now</button>
+          <button class="btn btn-primary" onclick="openGoogleForm()"><i class="ri-flashlight-line"></i> <span>Apply Now</span></button>
         </div>
 
         <!-- Mobile Menu Toggle Button -->
-        <button class="mobile-toggle" id="mobile-menu-btn"><i class="ri-menu-3-line"></i></button>
+        <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle Mobile Menu"><i class="ri-menu-3-line"></i></button>
       </div>
     </div>
   </header>

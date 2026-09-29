@@ -94,6 +94,9 @@ html.light {
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -101,7 +104,15 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 0;
   overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
@@ -156,9 +167,11 @@ img {
 }
 
 .container {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
+  box-sizing: border-box;
 }
 
 /* 1. TOP ANNOUNCEMENT TICKER BAR */
@@ -434,10 +447,12 @@ img {
   left: 50%;
   transform: translateX(-50%);
   width: 900px;
+  max-width: 100vw;
   height: 500px;
   background: var(--gradient-glow);
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 }
 
 .hero-grid {
@@ -1679,6 +1694,11 @@ select.form-control {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Mobile Auth & Centering Utilities */
+.mobile-only-auth {
+  display: none !important;
+}
+
 /* Media Queries */
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1689,14 +1709,216 @@ select.form-control {
 }
 
 @media (max-width: 768px) {
-  .nav-menu { display: none; }
-  .mobile-toggle { display: block; }
-  .hero-title { font-size: 2.2rem; }
-  .domains-grid, .features-grid, .testimonials-grid, .stepper-grid, .stats-grid, .career-tools-grid, .admin-metrics-grid { grid-template-columns: 1fr; }
-  .verify-form { flex-direction: column; }
-  .result-details { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    padding: 0 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .navbar {
+    height: 64px;
+    padding: 0;
+  }
+
+  .brand-logo {
+    font-size: 1.2rem;
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+  }
+
+  #nav-auth-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  #nav-auth-container .btn-secondary {
+    display: none;
+  }
+
+  #nav-auth-container .btn-primary {
+    padding: 8px 14px;
+    font-size: 0.82rem;
+  }
+
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background: var(--bg-card);
+    padding: 20px;
+    border-bottom: 1px solid var(--border-medium);
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    gap: 12px;
+  }
+
+  .nav-menu.active {
+    display: flex !important;
+  }
+
+  .mobile-only-auth {
+    display: flex !important;
+  }
+
+  .hero-section {
+    padding: 40px 0 60px 0;
+    text-align: center;
+  }
+
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin: 0 auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-perks {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .gov-accreditation {
+    margin: 0 auto;
+  }
+
+  .floating-verified-badge {
+    right: 10px;
+    bottom: 10px;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+  }
+
+  .code-editor-card {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .editor-body {
+    padding: 16px;
+    font-size: 0.8rem;
+    overflow-x: auto;
+  }
+
+  .domains-grid, .features-grid, .testimonials-grid, .stepper-grid, .stats-grid, .career-tools-grid, .admin-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .verify-card-wrapper {
+    padding: 24px 16px;
+  }
+
+  .verify-form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .verify-input {
+    width: 100%;
+  }
+
+  .result-details {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-preview-card {
+    padding: 20px 14px;
+  }
+
+  .modal-container {
+    padding: 24px 18px;
+    max-width: 92vw;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .brand-logo {
+    font-size: 1.1rem;
+  }
+
+  #nav-auth-container .btn-primary span {
+    display: none;
+  }
+
+  #nav-auth-container .btn-primary {
+    padding: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    gap: 0;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
 }
 
 /* ==========================================================
